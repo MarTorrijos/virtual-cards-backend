@@ -1,4 +1,4 @@
-package com.virtualcards.DTO;
+package com.virtualcards.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
