@@ -1,7 +1,7 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.DTO.AuthenticationRequest;
-import com.virtualcards.DTO.AuthenticationResponse;
+import com.virtualcards.dto.AuthenticationRequest;
+import com.virtualcards.dto.AuthenticationResponse;
 import com.virtualcards.model.User;
 import com.virtualcards.model.enums.Role;
 import com.virtualcards.repository.UserRepository;
