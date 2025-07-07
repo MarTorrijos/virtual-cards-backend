@@ -21,7 +21,7 @@ public class CardCrudController {
 
     @PostMapping
     public ResponseEntity<Card> createCard(@RequestBody CreateCardRequest request) {
-        Card addedCard = cardCrudService.createCard(request.getType(), request.getUserId());
+        Card addedCard = cardCrudService.createCard(request.getType());
         return ResponseEntity.status(HttpStatus.CREATED).body(addedCard);
     }
 
@@ -37,8 +37,8 @@ public class CardCrudController {
     }
 
     @GetMapping
-    public ResponseEntity<List<Card>> getAllCards() {
-        List<Card> cards = cardCrudService.getAllCards();
+    public ResponseEntity<List<Card>> getAllCardsForCurrentUser() {
+        List<Card> cards = cardCrudService.getAllCardsForCurrentUser();
         return ResponseEntity.ok(cards);
     }
 

@@ -1,10 +1,13 @@
 package com.virtualcards.service;
 
 import com.virtualcards.exception.CardNotFoundException;
+import com.virtualcards.exception.UnauthorizedAccessException;
 import com.virtualcards.model.Card;
 import com.virtualcards.model.enums.Type;
 import com.virtualcards.model.factory.CardFactory;
 import com.virtualcards.repository.CardRepository;
+import com.virtualcards.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,15 +17,18 @@ public class CardCrudService {
 
     private final CardRepository cardRepository;
     private final CardFactory cardFactory;
+    private final UserRepository userRepository;
 
-    public CardCrudService(CardRepository cardRepository, CardFactory cardFactory) {
+    public CardCrudService(CardRepository cardRepository, CardFactory cardFactory, UserRepository userRepository) {
         this.cardRepository = cardRepository;
         this.cardFactory = cardFactory;
+        this.userRepository = userRepository;
     }
 
     // TODO: possibly more validations
 
-    public Card createCard(Type type, Long userId) {
+    public Card createCard(Type type) {
+        Long userId = getCurrentUserId();
         Card card = cardFactory.createCard(type, userId);
         return cardRepository.save(card);
     }
@@ -33,12 +39,26 @@ public class CardCrudService {
     }
 
     public Card getCard(Long id) {
-        return cardRepository.findById(id).
-                orElseThrow(() -> new CardNotFoundException(id));
+        Card card = cardRepository.findById(id)
+                .orElseThrow(() -> new CardNotFoundException(id));
+
+        if (!card.getUserId().equals(getCurrentUserId())) {
+            throw new UnauthorizedAccessException("You do not have permission to access this card");
+        }
+
+        return card;
     }
 
-    public List<Card> getAllCards() {
-        return cardRepository.findAll();
+    public List<Card> getAllCardsForCurrentUser() {
+        Long userId = getCurrentUserId();
+        return cardRepository.findByUserId(userId);
+    }
+
+    public Long getCurrentUserId() {
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+        return userRepository.findByUsername(username)
+                .orElseThrow(() -> new RuntimeException("User not found"))
+                .getId();
     }
 
 }
