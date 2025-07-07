@@ -12,4 +12,14 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(NotEnoughEnergyException.class)
+    public ResponseEntity<String> handleNotEnoughEnergy(NotEnoughEnergyException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler(MaxEvolutionStageReachedException.class)
+    public ResponseEntity<String> handleMaxEvolutionStageReached(MaxEvolutionStageReachedException ex) {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
 }
