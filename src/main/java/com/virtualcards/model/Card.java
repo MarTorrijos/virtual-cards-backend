@@ -1,28 +1,28 @@
 package com.virtualcards.model;
 
 import com.virtualcards.model.enums.Type;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
 @AllArgsConstructor
+@NoArgsConstructor
 @Entity
 public class Card {
 
     @Id
-    private final Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String name;
     @Enumerated(EnumType.STRING)
-    private final Type type;
+    private Type type;
     private int evolutionStage;
-    private int health;
     private int attack;
+    private int health;
     private int xp;
     private Long userId;
 
