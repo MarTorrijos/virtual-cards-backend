@@ -2,16 +2,14 @@ package com.virtualcards.model;
 
 import com.virtualcards.model.enums.Type;
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
+@ToString
 public class Card {
 
     @Id

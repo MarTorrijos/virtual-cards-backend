@@ -9,6 +9,5 @@ import lombok.Setter;
 public class CreateCardRequest {
 
     private Type type;
-    private Long userId;
 
 }
