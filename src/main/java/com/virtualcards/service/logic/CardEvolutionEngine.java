@@ -2,7 +2,9 @@ package com.virtualcards.service.logic;
 
 import com.virtualcards.model.Card;
 import com.virtualcards.model.enums.Type;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CardEvolutionEngine {
 
     public void applyEvolution(Card card) {
