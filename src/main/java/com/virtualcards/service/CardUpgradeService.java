@@ -4,6 +4,7 @@ import com.virtualcards.exception.MaxEvolutionStageReachedException;
 import com.virtualcards.exception.NotEnoughEnergyException;
 import com.virtualcards.model.Card;
 import com.virtualcards.repository.CardRepository;
+import com.virtualcards.service.logic.CardEvolutionEngine;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Consumer;
@@ -13,10 +14,13 @@ public class CardUpgradeService {
 
     private final CardRepository cardRepository;
     private final CardCrudService cardCrudService;
+    private final CardEvolutionEngine cardEvolutionEngine;
 
-    public CardUpgradeService(CardRepository cardRepository, CardCrudService cardCrudService) {
+    public CardUpgradeService(CardRepository cardRepository, CardCrudService cardCrudService,
+                              CardEvolutionEngine cardEvolutionEngine) {
         this.cardRepository = cardRepository;
         this.cardCrudService = cardCrudService;
+        this.cardEvolutionEngine = cardEvolutionEngine;
     }
 
     public Card upgradeAttack(Long cardId) {
@@ -52,18 +56,25 @@ public class CardUpgradeService {
         };
     }
 
-    public Card evolve(Long cardId) {
-        Card existing = cardCrudService.getCard(cardId);
+    public int xpRequiredForEvolution(Card card) {
+        return switch (card.getEvolutionStage()) {
+            case 1 -> 150;
+            case 2 -> 300;
+            default -> throw new IllegalArgumentException("Invalid or maxed evolution stage");
+        };
+    }
 
-        if (existing.getEvolutionStage() >= 3) {
+    public Card evolve(Long cardId) {
+        Card card = cardCrudService.getCard(cardId);
+        if (card.getEvolutionStage() >= 3) {
             throw new MaxEvolutionStageReachedException();
         }
 
-        int xpNeeded = xpRequiredForUpgrade(existing);
-        validateAndConsumeXp(existing, xpNeeded, "evolve");
+        int xpNeeded = xpRequiredForEvolution(card);
+        validateAndConsumeXp(card, xpNeeded, "evolve");
 
-        existing.setEvolutionStage(existing.getEvolutionStage() + 1);
-        return cardRepository.save(existing);
+        cardEvolutionEngine.applyEvolution(card);
+        return cardRepository.save(card);
     }
 
 }
