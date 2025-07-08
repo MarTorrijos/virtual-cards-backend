@@ -5,7 +5,7 @@ import com.virtualcards.dto.AuthenticationResponse;
 import com.virtualcards.model.User;
 import com.virtualcards.model.enums.Role;
 import com.virtualcards.repository.UserRepository;
-import com.virtualcards.service.JwtService;
+import com.virtualcards.service.jwt.JwtService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
