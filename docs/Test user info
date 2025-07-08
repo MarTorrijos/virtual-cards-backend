@@ -3,5 +3,24 @@
   "password": "123456"
 }
 
-token
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0Iiwicm9sZXMiOlt7ImF1dGhvcml0eSI6IlJPTEVfVVNFUiJ9XSwiaWF0IjoxNzUxODU4NzU5LCJleHAiOjE3NTE4NjIzNTl9.mGWqV4b0e7W5oz592P8dLi47X7rW_UqK9MgFouU7pCQ
+____________________________________________________________________
+
+Not sure the previous user works okay. I created a new one just in case
+
+{
+  "username": "testuser",
+  "password": "testpass"
+}
+
+
+current token:
+
+eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImlhdCI6MTc1MTk2NTEzMiwiZXhwIjoxNzUxOTY4NzMyfQ.AcsHyBknDcRjgWqvkdcZWWllytuy2FRB9sTsaibwFQI
+
+
+To create a card with curl (it's helped when postman was just saying that something couldn't be done, this gave more info:
+
+curl -X POST http://localhost:8080/card \
+     -H "Content-Type: application/json" \
+     -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImlhdCI6MTc1MTk2NTEzMiwiZXhwIjoxNzUxOTY4NzMyfQ.AcsHyBknDcRjgWqvkdcZWWllytuy2FRB9sTsaibwFQI" \
+     -d '{"type": "ROCK"}'
