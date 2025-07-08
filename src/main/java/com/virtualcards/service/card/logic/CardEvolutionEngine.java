@@ -1,4 +1,4 @@
-package com.virtualcards.service.logic;
+package com.virtualcards.service.card.logic;
 
 import com.virtualcards.model.Card;
 import com.virtualcards.model.enums.Type;

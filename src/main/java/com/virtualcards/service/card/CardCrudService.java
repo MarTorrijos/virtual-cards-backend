@@ -1,4 +1,4 @@
-package com.virtualcards.service;
+package com.virtualcards.service.card;
 
 import com.virtualcards.exception.CardNotFoundException;
 import com.virtualcards.exception.UnauthorizedAccessException;
@@ -56,8 +56,7 @@ public class CardCrudService {
 
     public Long getCurrentUserId() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
-        // DELETE LATER. It's for testing
-        System.out.println("CURRENT USERNAME FROM SECURITY CONTEXT: " + username);
+
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"))
                 .getId();

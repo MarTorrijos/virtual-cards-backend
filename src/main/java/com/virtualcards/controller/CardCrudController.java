@@ -2,7 +2,7 @@ package com.virtualcards.controller;
 
 import com.virtualcards.dto.CreateCardRequest;
 import com.virtualcards.model.Card;
-import com.virtualcards.service.CardCrudService;
+import com.virtualcards.service.card.CardCrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

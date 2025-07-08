@@ -1,4 +1,4 @@
-package com.virtualcards.service;
+package com.virtualcards.service.battle;
 
 import com.virtualcards.model.Card;
 import com.virtualcards.repository.CardRepository;

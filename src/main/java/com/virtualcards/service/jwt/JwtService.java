@@ -1,4 +1,4 @@
-package com.virtualcards.service;
+package com.virtualcards.service.jwt;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

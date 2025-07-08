@@ -1,7 +1,7 @@
 package com.virtualcards.controller;
 
 import com.virtualcards.model.Card;
-import com.virtualcards.service.CardUpgradeService;
+import com.virtualcards.service.card.CardUpgradeService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 

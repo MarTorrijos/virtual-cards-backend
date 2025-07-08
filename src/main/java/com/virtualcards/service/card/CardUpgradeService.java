@@ -1,10 +1,10 @@
-package com.virtualcards.service;
+package com.virtualcards.service.card;
 
 import com.virtualcards.exception.MaxEvolutionStageReachedException;
 import com.virtualcards.exception.NotEnoughEnergyException;
 import com.virtualcards.model.Card;
 import com.virtualcards.repository.CardRepository;
-import com.virtualcards.service.logic.CardEvolutionEngine;
+import com.virtualcards.service.card.logic.CardEvolutionEngine;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Consumer;

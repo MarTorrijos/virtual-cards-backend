@@ -1,6 +1,6 @@
 package com.virtualcards.security;
 
-import com.virtualcards.service.JwtService;
+import com.virtualcards.service.jwt.JwtService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
