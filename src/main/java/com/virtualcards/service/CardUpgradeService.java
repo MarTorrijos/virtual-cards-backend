@@ -42,7 +42,7 @@ public class CardUpgradeService {
 
     private void validateAndConsumeXp(Card card, int xpNeeded, String context) {
         if (card.getXp() < xpNeeded) {
-            throw new NotEnoughEnergyException("Not enough energy to " + context);
+            throw new NotEnoughEnergyException("Not enough xp to " + context);
         }
         card.setXp(card.getXp() - xpNeeded);
     }
