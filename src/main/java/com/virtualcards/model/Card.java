@@ -4,12 +4,10 @@ import com.virtualcards.model.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 
-@Getter
-@Setter
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@ToString
 public class Card {
 
     @Id
