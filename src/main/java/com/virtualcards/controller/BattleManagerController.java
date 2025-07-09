@@ -1,6 +1,7 @@
 package com.virtualcards.controller;
 
 import com.virtualcards.domain.Card;
+import com.virtualcards.dto.battle.BattleLog;
 import com.virtualcards.service.battle.BattleManagerService;
 import com.virtualcards.service.card.CardCrudService;
 import org.springframework.http.ResponseEntity;
@@ -18,11 +19,11 @@ public class BattleManagerController {
         this.cardCrudService = cardCrudService;
     }
 
-    @PostMapping("{id}")
-    public ResponseEntity<Card> battle(@PathVariable Long id) {
+    @PostMapping("/{id}")
+    public ResponseEntity<BattleLog> battle(@PathVariable Long id) {
         Card card = cardCrudService.getCard(id);
-        Card updatedCard = battleManagerService.battle(card);
-        return ResponseEntity.ok(updatedCard);
+        BattleLog log = battleManagerService.battle(card);
+        return ResponseEntity.ok(log);
     }
 
 }
