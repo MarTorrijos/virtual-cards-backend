@@ -54,7 +54,7 @@ public class CardCrudService {
         return cardRepository.findByUserId(userId);
     }
 
-    public Long getCurrentUserId() {
+    private Long getCurrentUserId() {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return userRepository.findByUsername(username)

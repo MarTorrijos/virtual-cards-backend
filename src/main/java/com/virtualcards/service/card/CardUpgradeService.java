@@ -46,20 +46,12 @@ public class CardUpgradeService {
         card.setXp(card.getXp() - xpNeeded);
     }
 
-    public int xpRequiredForUpgrade(Card card) {
+    private int xpRequiredForUpgrade(Card card) {
         return switch (card.getEvolutionStage()) {
             case 1 -> 75;
             case 2 -> 125;
             case 3 -> 175;
             default -> throw new IllegalArgumentException("Invalid evolution stage");
-        };
-    }
-
-    public int xpRequiredForEvolution(Card card) {
-        return switch (card.getEvolutionStage()) {
-            case 1 -> 150;
-            case 2 -> 300;
-            default -> throw new IllegalArgumentException("Invalid or maxed evolution stage");
         };
     }
 
@@ -74,6 +66,14 @@ public class CardUpgradeService {
 
         cardEvolutionEngine.applyEvolution(card);
         return cardRepository.save(card);
+    }
+
+    private int xpRequiredForEvolution(Card card) {
+        return switch (card.getEvolutionStage()) {
+            case 1 -> 150;
+            case 2 -> 300;
+            default -> throw new IllegalArgumentException("Invalid or maxed evolution stage");
+        };
     }
 
 }
