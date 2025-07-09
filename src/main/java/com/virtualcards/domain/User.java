@@ -1,6 +1,6 @@
-package com.virtualcards.model;
+package com.virtualcards.domain;
 
-import com.virtualcards.model.enums.Role;
+import com.virtualcards.domain.enums.Role;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;

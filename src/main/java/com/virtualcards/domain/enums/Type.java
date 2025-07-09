@@ -1,4 +1,4 @@
-package com.virtualcards.model.enums;
+package com.virtualcards.domain.enums;
 
 public enum Type {
 

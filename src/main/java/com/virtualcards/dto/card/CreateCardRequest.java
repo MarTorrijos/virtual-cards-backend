@@ -1,6 +1,6 @@
-package com.virtualcards.dto;
+package com.virtualcards.dto.card;
 
-import com.virtualcards.model.enums.Type;
+import com.virtualcards.domain.enums.Type;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -1,6 +1,6 @@
-package com.virtualcards.security.config;
+package com.virtualcards.config;
 
-import com.virtualcards.security.JwtAuthenticationFilter;
+import com.virtualcards.config.security.JwtAuthenticationFilter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

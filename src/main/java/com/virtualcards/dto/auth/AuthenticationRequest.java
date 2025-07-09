@@ -1,4 +1,4 @@
-package com.virtualcards.dto;
+package com.virtualcards.dto.auth;
 
 public class AuthenticationRequest {
     private String username;

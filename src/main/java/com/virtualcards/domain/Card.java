@@ -1,6 +1,6 @@
-package com.virtualcards.model;
+package com.virtualcards.domain;
 
-import com.virtualcards.model.enums.Type;
+import com.virtualcards.domain.enums.Type;
 import jakarta.persistence.*;
 import lombok.*;
 

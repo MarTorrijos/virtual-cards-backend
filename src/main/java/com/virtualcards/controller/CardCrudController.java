@@ -1,7 +1,7 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.dto.CreateCardRequest;
-import com.virtualcards.model.Card;
+import com.virtualcards.dto.card.CreateCardRequest;
+import com.virtualcards.domain.Card;
 import com.virtualcards.service.card.CardCrudService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

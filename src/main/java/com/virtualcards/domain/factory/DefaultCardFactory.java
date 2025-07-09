@@ -1,7 +1,7 @@
-package com.virtualcards.model.factory;
+package com.virtualcards.domain.factory;
 
-import com.virtualcards.model.Card;
-import com.virtualcards.model.enums.Type;
+import com.virtualcards.domain.Card;
+import com.virtualcards.domain.enums.Type;
 import org.springframework.stereotype.Component;
 
 @Component

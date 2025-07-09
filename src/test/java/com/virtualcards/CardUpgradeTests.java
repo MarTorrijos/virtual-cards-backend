@@ -1,8 +1,8 @@
 package com.virtualcards;
 
 import com.virtualcards.controller.CardUpgradeController;
-import com.virtualcards.model.Card;
-import com.virtualcards.model.enums.Type;
+import com.virtualcards.domain.Card;
+import com.virtualcards.domain.enums.Type;
 import com.virtualcards.service.card.CardUpgradeService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

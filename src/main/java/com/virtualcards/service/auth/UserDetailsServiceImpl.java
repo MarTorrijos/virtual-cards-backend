@@ -1,4 +1,4 @@
-package com.virtualcards.service.user;
+package com.virtualcards.service.auth;
 
 import com.virtualcards.repository.UserRepository;
 import org.springframework.security.core.userdetails.UserDetails;

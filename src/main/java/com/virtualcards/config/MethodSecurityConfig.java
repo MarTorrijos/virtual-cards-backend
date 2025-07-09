@@ -1,4 +1,4 @@
-package com.virtualcards.security.config;
+package com.virtualcards.config;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;

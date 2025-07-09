@@ -1,6 +1,6 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.model.Card;
+import com.virtualcards.domain.Card;
 import com.virtualcards.service.admin.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;

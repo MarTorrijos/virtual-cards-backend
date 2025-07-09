@@ -1,9 +1,9 @@
 package com.virtualcards;
 
 import com.virtualcards.controller.CardCrudController;
-import com.virtualcards.dto.CreateCardRequest;
-import com.virtualcards.model.Card;
-import com.virtualcards.model.enums.Type;
+import com.virtualcards.dto.card.CreateCardRequest;
+import com.virtualcards.domain.Card;
+import com.virtualcards.domain.enums.Type;
 import com.virtualcards.service.card.CardCrudService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

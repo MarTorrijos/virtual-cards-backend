@@ -1,6 +1,6 @@
 package com.virtualcards.service.battle;
 
-import com.virtualcards.model.Card;
+import com.virtualcards.domain.Card;
 import com.virtualcards.repository.CardRepository;
 import org.springframework.stereotype.Service;
 

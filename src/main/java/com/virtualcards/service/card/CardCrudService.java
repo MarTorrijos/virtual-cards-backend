@@ -2,9 +2,9 @@ package com.virtualcards.service.card;
 
 import com.virtualcards.exception.CardNotFoundException;
 import com.virtualcards.exception.UnauthorizedAccessException;
-import com.virtualcards.model.Card;
-import com.virtualcards.model.enums.Type;
-import com.virtualcards.model.factory.CardFactory;
+import com.virtualcards.domain.Card;
+import com.virtualcards.domain.enums.Type;
+import com.virtualcards.domain.factory.CardFactory;
 import com.virtualcards.repository.CardRepository;
 import com.virtualcards.repository.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;

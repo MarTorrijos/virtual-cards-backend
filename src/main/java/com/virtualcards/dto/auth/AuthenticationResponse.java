@@ -1,4 +1,4 @@
-package com.virtualcards.dto;
+package com.virtualcards.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
