@@ -1,0 +1,19 @@
+package com.virtualcards.dto.card;
+
+import com.virtualcards.domain.enums.Type;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class OpponentCard {
+
+    private String name;
+    private Type type;
+    private int evolutionStage;
+    private int attack;
+    private int health;
+
+}
