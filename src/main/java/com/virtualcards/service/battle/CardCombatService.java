@@ -17,14 +17,22 @@ public class CardCombatService {
     }
 
     public int cardAttack(Card card, OpponentCard opponentCard) {
-        int effectiveAttack = calculateEffectiveAttack(card.getType(), opponentCard.getType(),
-                card.getAttack());
+        int effectiveAttack = calculateEffectiveAttack(
+                card.getType(),
+                opponentCard.getType(),
+                card.getAttack(),
+                card.getEvolutionStage()
+        );
         return applyDamage(opponentCard.getHealth(), effectiveAttack);
     }
 
     public int opponentCardAttack(Card card, OpponentCard opponentCard) {
-        int effectiveAttack = calculateEffectiveAttack(opponentCard.getType(), card.getType(),
-                opponentCard.getAttack());
+        int effectiveAttack = calculateEffectiveAttack(
+                opponentCard.getType(),
+                card.getType(),
+                opponentCard.getAttack(),
+                opponentCard.getEvolutionStage()
+        );
         return applyDamage(card.getHealth(), effectiveAttack);
     }
 
@@ -32,8 +40,15 @@ public class CardCombatService {
         return defenderHealth - attackerEffectiveAttack;
     }
 
-    private int calculateEffectiveAttack(Type attackerType, Type defenderType, int baseAttack) {
-        return hasTypeAdvantage(attackerType, defenderType) ? baseAttack + 10 : baseAttack;
+    private int calculateEffectiveAttack(Type attackerType, Type defenderType, int baseAttack, int attackerStage) {
+        int bonus = switch (attackerStage) {
+            case 1 -> 10;
+            case 2 -> 15;
+            case 3 -> 20;
+            default -> 0;
+        };
+
+        return hasTypeAdvantage(attackerType, defenderType) ? baseAttack + bonus : baseAttack;
     }
 
     private boolean hasTypeAdvantage(Type attacker, Type defender) {
@@ -51,7 +66,7 @@ public class CardCombatService {
         };
     }
 
-    public boolean doesPlayerCardWin(Card card, OpponentCard opponentCard) {
+    public boolean playerCardWins(Card card, OpponentCard opponentCard) {
         return opponentCard.getHealth() <= 0;
     }
 
