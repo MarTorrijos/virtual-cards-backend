@@ -1,6 +1,5 @@
-package com.virtualcards;
+package com.virtualcards.controller;
 
-import com.virtualcards.controller.CardUpgradeController;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.service.card.CardUpgradeService;

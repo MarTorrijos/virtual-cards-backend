@@ -1,6 +1,5 @@
-package com.virtualcards;
+package com.virtualcards.controller;
 
-import com.virtualcards.controller.CardCrudController;
 import com.virtualcards.dto.card.CreateCardRequest;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
