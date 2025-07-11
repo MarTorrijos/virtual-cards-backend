@@ -1,4 +1,4 @@
-package com.virtualcards.dto.card;
+package com.virtualcards.dto.battle;
 
 import com.virtualcards.domain.enums.Type;
 import lombok.AllArgsConstructor;

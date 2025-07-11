@@ -1,7 +1,7 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
-import com.virtualcards.dto.card.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCard;
 import org.springframework.stereotype.Service;
 
 @Service
