@@ -5,6 +5,7 @@ import com.virtualcards.exception.CardNotFoundException;
 import com.virtualcards.exception.CooldownNotOverException;
 import com.virtualcards.repository.CardRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -19,7 +20,7 @@ public class PostBattleHealing {
 
     private final Map<Long, LocalDateTime> cooldownMap = new ConcurrentHashMap<>();
 
-    private static final int COOLDOWN_SECONDS = 10;
+    private static final int COOLDOWN_SECONDS = 6;
 
     public void startCooldown(Long cardId) {
         cooldownMap.put(cardId, LocalDateTime.now().plusSeconds(COOLDOWN_SECONDS));
@@ -42,4 +43,18 @@ public class PostBattleHealing {
         cooldownMap.remove(cardId);
         return cardRepository.save(card);
     }
+
+    @Scheduled(fixedRate = 1000)
+    public void healCardsIfReady() {
+        cooldownMap.forEach((cardId, endTime) -> {
+            if (LocalDateTime.now().isAfter(endTime)) {
+                try {
+                    healCard(cardId);
+                    System.out.println("Auto-healed card " + cardId);
+                } catch (Exception ignored) {
+                }
+            }
+        });
+    }
+
 }
