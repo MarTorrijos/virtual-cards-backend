@@ -6,15 +6,12 @@ import com.virtualcards.dto.card.OpponentCard;
 import com.virtualcards.util.BattleLogger;
 import org.springframework.stereotype.Service;
 
-import java.util.Random;
-
 @Service
 public class BattleManagerService {
 
     private final AttackService cardCombatService;
     private final OpponentCardGenerator opponentCardGenerator;
     private final CombatResultService combatResultService;
-
 
     public BattleManagerService(AttackService cardCombatService, OpponentCardGenerator opponentCardGenerator,
                                 CombatResultService combatResultService) {
@@ -26,24 +23,13 @@ public class BattleManagerService {
     public BattleLog battle(Card card) {
         BattleLogger logger = new BattleLogger();
 
-        OpponentCard opponentCard = generateFairOpponent(card, logger);
+        OpponentCard opponentCard = opponentCardGenerator.createFairOpponent(card);
+        logger.logOpponentGenerated(opponentCard.getName(), opponentCard.getEvolutionStage());
+
         fightLoop(card, opponentCard, logger);
         resolveOutcome(card, opponentCard, logger);
 
         return new BattleLog(card, logger.getEvents());
-    }
-
-    private OpponentCard generateFairOpponent(Card card, BattleLogger logger) {
-        OpponentCard opponentCard = opponentCardGenerator.createRandomOpponent();
-
-        switch (card.getEvolutionStage()) {
-            case 1 -> opponentCard.setEvolutionStage(randomBetween(1, 2));
-            case 2 -> opponentCard.setEvolutionStage(randomBetween(2, 3));
-            case 3 -> opponentCard.setEvolutionStage(3);
-        }
-
-        logger.logOpponentGenerated(opponentCard.getName(), opponentCard.getEvolutionStage());
-        return opponentCard;
     }
 
     private void fightLoop(Card card, OpponentCard opponentCard, BattleLogger logger) {
@@ -90,10 +76,6 @@ public class BattleManagerService {
         } else {
             logger.logLoss(card.getName());
         }
-    }
-
-    private int randomBetween(int min, int max) {
-        return new Random().nextInt((max - min) + 1) + min;
     }
 
 }
