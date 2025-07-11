@@ -10,7 +10,7 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BattleLog {
+public class BattleLogDto {
 
     private Card updatedCard;
     private List<String> events;

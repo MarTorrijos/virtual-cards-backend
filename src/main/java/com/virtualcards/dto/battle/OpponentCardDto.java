@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class OpponentCard {
+public class OpponentCardDto {
 
     private String name;
     private Type type;

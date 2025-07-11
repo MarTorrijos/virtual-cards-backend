@@ -1,10 +1,10 @@
 package com.virtualcards.dto.auth;
 
-public class AuthenticationRequest {
+public class AuthenticationRequestDto {
     private String username;
     private String password;
 
-    public AuthenticationRequest() {
+    public AuthenticationRequestDto() {
     }
 
     public String getUsername() {

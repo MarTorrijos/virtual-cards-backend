@@ -1,7 +1,7 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.dto.auth.AuthenticationRequest;
-import com.virtualcards.dto.auth.AuthenticationResponse;
+import com.virtualcards.dto.auth.AuthenticationRequestDto;
+import com.virtualcards.dto.auth.AuthenticationResponseDto;
 import com.virtualcards.domain.User;
 import com.virtualcards.domain.enums.Role;
 import com.virtualcards.repository.UserRepository;
@@ -34,7 +34,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<AuthenticationResponseDto> login(@RequestBody AuthenticationRequestDto request) {
         System.out.println("Received login request: username=" + request.getUsername() + ", password=" + request.getPassword());
 
         authenticationManager.authenticate(
@@ -45,11 +45,11 @@ public class AuthController {
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
 
         String token = jwtService.generateToken(user);
-        return ResponseEntity.ok(new AuthenticationResponse(token));
+        return ResponseEntity.ok(new AuthenticationResponseDto(token));
     }
 
     @PostMapping("/register")
-    public ResponseEntity<?> register(@RequestBody AuthenticationRequest request) {
+    public ResponseEntity<?> register(@RequestBody AuthenticationRequestDto request) {
         User newUser = new User();
         newUser.setUsername(request.getUsername());
         newUser.setPassword(passwordEncoder.encode(request.getPassword()));

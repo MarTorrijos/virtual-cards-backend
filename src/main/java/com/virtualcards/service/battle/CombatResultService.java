@@ -1,7 +1,7 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
-import com.virtualcards.dto.battle.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCardDto;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -16,7 +16,7 @@ public class CombatResultService {
         };
     }
 
-    public boolean playerCardWins(OpponentCard opponentCard) {
+    public boolean playerCardWins(OpponentCardDto opponentCard) {
         return opponentCard.getHealth() <= 0;
     }
 

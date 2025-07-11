@@ -1,7 +1,7 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
-import com.virtualcards.dto.battle.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCardDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -20,7 +20,7 @@ public class AttackService {
         return random.nextBoolean();
     }
 
-    public int cardAttack(Card card, OpponentCard opponentCard) {
+    public int cardAttack(Card card, OpponentCardDto opponentCard) {
         int effectiveAttack = advantageService.calculateEffectiveAttack(
                 card.getType(),
                 opponentCard.getType(),
@@ -30,7 +30,7 @@ public class AttackService {
         return applyDamage(opponentCard.getHealth(), effectiveAttack);
     }
 
-    public int opponentCardAttack(Card card, OpponentCard opponentCard) {
+    public int opponentCardAttack(Card card, OpponentCardDto opponentCard) {
         int effectiveAttack = advantageService.calculateEffectiveAttack(
                 opponentCard.getType(),
                 card.getType(),

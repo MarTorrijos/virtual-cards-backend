@@ -1,6 +1,6 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.dto.card.CreateCardRequest;
+import com.virtualcards.dto.card.CreateCardRequestDto;
 import com.virtualcards.domain.Card;
 import com.virtualcards.service.card.CardCrudService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +20,7 @@ public class CardCrudController {
     }
 
     @PostMapping
-    public ResponseEntity<Card> createCard(@RequestBody CreateCardRequest request) {
+    public ResponseEntity<Card> createCard(@RequestBody CreateCardRequestDto request) {
         Card addedCard = cardCrudService.createCard(request.getType());
         return ResponseEntity.status(HttpStatus.CREATED).body(addedCard);
     }

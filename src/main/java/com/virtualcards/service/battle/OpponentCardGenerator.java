@@ -3,7 +3,7 @@ package com.virtualcards.service.battle;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.domain.factory.DefaultCardFactory;
-import com.virtualcards.dto.battle.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCardDto;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -18,13 +18,13 @@ public class OpponentCardGenerator {
         this.defaultCardFactory = defaultCardFactory;
     }
 
-    public OpponentCard createFairOpponent(Card playerCard) {
+    public OpponentCardDto createFairOpponent(Card playerCard) {
         Type randomType = getRandomType();
         Card baseCard = defaultCardFactory.createCard(randomType, null);
 
         int adjustedStage = getBalancedStage(playerCard.getEvolutionStage());
 
-        return new OpponentCard(
+        return new OpponentCardDto(
                 baseCard.getName(),
                 baseCard.getType(),
                 adjustedStage,

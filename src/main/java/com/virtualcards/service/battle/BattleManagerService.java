@@ -1,8 +1,8 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
-import com.virtualcards.dto.battle.BattleLog;
-import com.virtualcards.dto.battle.OpponentCard;
+import com.virtualcards.dto.battle.BattleLogDto;
+import com.virtualcards.dto.battle.OpponentCardDto;
 import com.virtualcards.util.BattleLogger;
 import org.springframework.stereotype.Service;
 
@@ -22,19 +22,19 @@ public class BattleManagerService {
         this.postBattleHealing = postBattleHealing;
     }
 
-    public BattleLog battle(Card card) {
+    public BattleLogDto battle(Card card) {
         BattleLogger logger = new BattleLogger();
 
-        OpponentCard opponentCard = opponentCardGenerator.createFairOpponent(card);
+        OpponentCardDto opponentCard = opponentCardGenerator.createFairOpponent(card);
         logger.logOpponentGenerated(opponentCard.getName(), opponentCard.getEvolutionStage());
 
         fightLoop(card, opponentCard, logger);
         resolveOutcome(card, opponentCard, logger);
 
-        return new BattleLog(card, logger.getEvents());
+        return new BattleLogDto(card, logger.getEvents());
     }
 
-    private void fightLoop(Card card, OpponentCard opponentCard, BattleLogger logger) {
+    private void fightLoop(Card card, OpponentCardDto opponentCard, BattleLogger logger) {
         boolean playerStarts = cardCombatService.doesPlayerBeginAttacking();
         String starterName = playerStarts ? card.getName() : "Opponent " + opponentCard.getName();
         logger.logStart(starterName);
@@ -49,11 +49,11 @@ public class BattleManagerService {
         }
     }
 
-    private boolean processBattleTurn(Card card, OpponentCard opponentCard, boolean isPlayerTurn, BattleLogger logger) {
+    private boolean processBattleTurn(Card card, OpponentCardDto opponentCard, boolean isPlayerTurn, BattleLogger logger) {
         return executeTurn(card, opponentCard, isPlayerTurn, logger);
     }
 
-    private boolean executeTurn(Card card, OpponentCard opponentCard, boolean isPlayer, BattleLogger logger) {
+    private boolean executeTurn(Card card, OpponentCardDto opponentCard, boolean isPlayer, BattleLogger logger) {
         if (isPlayer) {
             int newOpponentHealth = cardCombatService.cardAttack(card, opponentCard);
             newOpponentHealth = Math.max(newOpponentHealth, 0);
@@ -69,7 +69,7 @@ public class BattleManagerService {
         }
     }
 
-    private void resolveOutcome(Card card, OpponentCard opponentCard, BattleLogger logger) {
+    private void resolveOutcome(Card card, OpponentCardDto opponentCard, BattleLogger logger) {
         if (combatResultService.playerCardWins(opponentCard)) {
             int xpGained = combatResultService.winXP(card);
             card.setXp(card.getXp() + xpGained);
