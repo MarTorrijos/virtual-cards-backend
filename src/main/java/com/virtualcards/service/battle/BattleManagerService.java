@@ -2,7 +2,7 @@ package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
 import com.virtualcards.dto.battle.BattleLog;
-import com.virtualcards.dto.card.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCard;
 import com.virtualcards.util.BattleLogger;
 import org.springframework.stereotype.Service;
 
@@ -56,12 +56,12 @@ public class BattleManagerService {
             int newOpponentHealth = cardCombatService.cardAttack(card, opponentCard);
             newOpponentHealth = Math.max(newOpponentHealth, 0);
             opponentCard.setHealth(newOpponentHealth);
-            logger.logAttack(card.getName(), " Opponent " + opponentCard.getName(), newOpponentHealth);
+            logger.logAttack(card.getName(), "Opponent " + opponentCard.getName(), newOpponentHealth);
             return newOpponentHealth == 0;
         } else {
             int newPlayerHealth = cardCombatService.opponentCardAttack(card, opponentCard);
             newPlayerHealth = Math.max(newPlayerHealth, 0);
-            card.setHealth(newPlayerHealth);
+            card.setCurrentHealth(newPlayerHealth);
             logger.logAttack("Opponent " + opponentCard.getName(), card.getName(), newPlayerHealth);
             return newPlayerHealth == 0;
         }

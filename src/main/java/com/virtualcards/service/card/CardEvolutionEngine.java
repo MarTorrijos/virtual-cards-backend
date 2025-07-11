@@ -26,12 +26,14 @@ public class CardEvolutionEngine {
             case 1 -> {
                 card.setName("Rockon");
                 card.setAttack(card.getAttack() + 15);
-                card.setHealth(card.getHealth() + 25);
+                card.setMaxHealth(card.getMaxHealth() + 25);
+                card.setCurrentHealth(card.getMaxHealth());
             }
             case 2 -> {
                 card.setName("Rockolith");
                 card.setAttack(card.getAttack() + 20);
-                card.setHealth(card.getHealth() + 30);
+                card.setMaxHealth(card.getMaxHealth() + 30);
+                card.setCurrentHealth(card.getMaxHealth());
             }
             default -> throw new IllegalArgumentException("Invalid evolution stage for rock type: " + stage);
         }
@@ -42,12 +44,14 @@ public class CardEvolutionEngine {
             case 1 -> {
                 card.setName("Papyrune");
                 card.setAttack(card.getAttack() + 20);
-                card.setHealth(card.getHealth() + 20);
+                card.setMaxHealth(card.getMaxHealth() + 20);
+                card.setCurrentHealth(card.getMaxHealth());
             }
             case 2 -> {
                 card.setName("Papyrion");
                 card.setAttack(card.getAttack() + 25);
-                card.setHealth(card.getHealth() + 25);
+                card.setMaxHealth(card.getMaxHealth() + 25);
+                card.setCurrentHealth(card.getMaxHealth());
             }
             default -> throw new IllegalArgumentException("Invalid evolution stage for paper type: " + stage);
         }
@@ -58,12 +62,14 @@ public class CardEvolutionEngine {
             case 1 -> {
                 card.setName("Shearix");
                 card.setAttack(card.getAttack() + 25);
-                card.setHealth(card.getHealth() + 15);
+                card.setMaxHealth(card.getMaxHealth() + 15);
+                card.setCurrentHealth(card.getMaxHealth());
             }
             case 2 -> {
                 card.setName("Shearagon");
                 card.setAttack(card.getAttack() + 30);
-                card.setHealth(card.getHealth() + 20);
+                card.setMaxHealth(card.getMaxHealth() + 20);
+                card.setCurrentHealth(card.getMaxHealth());
             }
             default -> throw new IllegalArgumentException("Invalid evolution stage for scissors type: " + stage);
         }

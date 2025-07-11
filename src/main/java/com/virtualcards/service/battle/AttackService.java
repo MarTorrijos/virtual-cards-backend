@@ -1,7 +1,7 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
-import com.virtualcards.dto.card.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCard;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
@@ -37,7 +37,7 @@ public class AttackService {
                 opponentCard.getAttack(),
                 opponentCard.getEvolutionStage()
         );
-        return applyDamage(card.getHealth(), effectiveAttack);
+        return applyDamage(card.getCurrentHealth(), effectiveAttack);
     }
 
     private int applyDamage(int defenderHealth, int attackerEffectiveAttack) {

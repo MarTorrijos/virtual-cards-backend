@@ -3,7 +3,7 @@ package com.virtualcards.service.battle;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.domain.factory.DefaultCardFactory;
-import com.virtualcards.dto.card.OpponentCard;
+import com.virtualcards.dto.battle.OpponentCard;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
@@ -29,7 +29,7 @@ public class OpponentCardGenerator {
                 baseCard.getType(),
                 adjustedStage,
                 baseCard.getAttack(),
-                baseCard.getHealth()
+                baseCard.getMaxHealth()
         );
     }
 
@@ -46,7 +46,6 @@ public class OpponentCardGenerator {
             default -> 1;
         };
     }
-
 
     private int randomBetween(int min, int max) {
         return random.nextInt((max - min) + 1) + min;

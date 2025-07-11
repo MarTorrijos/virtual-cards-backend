@@ -18,7 +18,8 @@ public class Card {
     private Type type;
     private int evolutionStage;
     private int attack;
-    private int health;
+    private int maxHealth;
+    private int currentHealth;
     private int xp;
     private Long userId;
 

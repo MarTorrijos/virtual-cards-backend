@@ -11,23 +11,23 @@ public class DefaultCardFactory implements CardFactory {
     public Card createCard(Type type, Long userId) {
         String name;
         int attack;
-        int health;
+        int maxHealth;
 
         switch (type) {
             case ROCK -> {
                 name = "Rocky";
                 attack = 20;
-                health = 50;
+                maxHealth = 50;
             }
             case PAPER -> {
                 name = "Papyrus";
                 attack = 25;
-                health = 45;
+                maxHealth = 45;
             }
             case SCISSORS -> {
                 name = "Sheary";
                 attack = 30;
-                health = 40;
+                maxHealth = 40;
             }
             default -> throw new IllegalArgumentException("Invalid type: " + type);
         }
@@ -38,7 +38,8 @@ public class DefaultCardFactory implements CardFactory {
                 type,
                 1,
                 attack,
-                health,
+                maxHealth,
+                maxHealth,
                 0,
                 userId
         );

@@ -27,7 +27,10 @@ public class CardUpgradeService {
     }
 
     public Card upgradeHealth(Long cardId) {
-        return applyUpgrade(cardId, "health", card -> card.setHealth(card.getHealth() + 10));
+        return applyUpgrade(cardId, "health", card -> {
+            card.setMaxHealth(card.getMaxHealth() + 10);
+            card.setCurrentHealth(card.getMaxHealth());
+        });
     }
 
     private Card applyUpgrade(Long cardId, String context, Consumer<Card> statUpgrade) {
