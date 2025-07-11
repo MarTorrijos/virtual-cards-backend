@@ -2,7 +2,9 @@ package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
 import com.virtualcards.dto.card.OpponentCard;
+import org.springframework.stereotype.Service;
 
+@Service
 public class CombatResultService {
 
     public int winXP(Card card) {

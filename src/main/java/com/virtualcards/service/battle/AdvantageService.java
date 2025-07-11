@@ -1,7 +1,9 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.enums.Type;
+import org.springframework.stereotype.Service;
 
+@Service
 public class AdvantageService {
 
     public int calculateEffectiveAttack(Type attackerType, Type defenderType, int baseAttack, int attackerStage) {
