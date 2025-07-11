@@ -1,6 +1,6 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.domain.Card;
+import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.service.admin.AdminService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -20,8 +20,10 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/admin/cards")
-    public ResponseEntity<List<Card>> getAllCards() {
+    public ResponseEntity<List<CardResponseDto>> getAllCards() {
         return ResponseEntity.ok(adminService.getAllCards());
     }
+
+    // todo: finish this. But first finish the service
 
 }

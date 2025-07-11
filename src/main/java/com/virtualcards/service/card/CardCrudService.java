@@ -3,6 +3,7 @@ package com.virtualcards.service.card;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.domain.factory.CardFactory;
+import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.exception.CardNotFoundException;
 import com.virtualcards.exception.UnauthorizedAccessException;
 import com.virtualcards.repository.CardRepository;
@@ -54,6 +55,29 @@ public class CardCrudService {
 
     public Card save(Card card) {
         return cardRepository.save(card);
+    }
+
+    public CardResponseDto getCardDto(Long id) {
+        return mapToDto(getCard(id));
+    }
+
+    public List<CardResponseDto> getAllCardsForCurrentUserDto() {
+        return getAllCardsForCurrentUser().stream()
+                .map(this::mapToDto)
+                .toList();
+    }
+
+    public CardResponseDto mapToDto(Card card) {
+        return new CardResponseDto(
+                card.getId(),
+                card.getName(),
+                card.getType(),
+                card.getEvolutionStage(),
+                card.getAttack(),
+                card.getMaxHealth(),
+                card.getCurrentHealth(),
+                card.getXp()
+        );
     }
 
 }
