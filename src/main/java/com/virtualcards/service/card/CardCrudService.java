@@ -1,13 +1,12 @@
 package com.virtualcards.service.card;
 
-import com.virtualcards.exception.CardNotFoundException;
-import com.virtualcards.exception.UnauthorizedAccessException;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.domain.factory.CardFactory;
+import com.virtualcards.exception.CardNotFoundException;
+import com.virtualcards.exception.UnauthorizedAccessException;
 import com.virtualcards.repository.CardRepository;
-import com.virtualcards.repository.UserRepository;
-import org.springframework.security.core.context.SecurityContextHolder;
+import com.virtualcards.service.user.CurrentUserService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,18 +16,17 @@ public class CardCrudService {
 
     private final CardRepository cardRepository;
     private final CardFactory cardFactory;
-    private final UserRepository userRepository;
+    private final CurrentUserService currentUserService;
 
-    public CardCrudService(CardRepository cardRepository, CardFactory cardFactory, UserRepository userRepository) {
+    public CardCrudService(CardRepository cardRepository, CardFactory cardFactory,
+                           CurrentUserService currentUserService) {
         this.cardRepository = cardRepository;
         this.cardFactory = cardFactory;
-        this.userRepository = userRepository;
+        this.currentUserService = currentUserService;
     }
 
-    // TODO: possibly more validations
-
     public Card createCard(Type type) {
-        Long userId = getCurrentUserId();
+        Long userId = currentUserService.getCurrentUserId();
         Card card = cardFactory.createCard(type, userId);
         return cardRepository.save(card);
     }
@@ -42,7 +40,7 @@ public class CardCrudService {
         Card card = cardRepository.findById(id)
                 .orElseThrow(() -> new CardNotFoundException(id));
 
-        if (!card.getUserId().equals(getCurrentUserId())) {
+        if (!card.getUserId().equals(currentUserService.getCurrentUserId())) {
             throw new UnauthorizedAccessException("You do not have permission to access this card");
         }
 
@@ -50,16 +48,8 @@ public class CardCrudService {
     }
 
     public List<Card> getAllCardsForCurrentUser() {
-        Long userId = getCurrentUserId();
+        Long userId = currentUserService.getCurrentUserId();
         return cardRepository.findByUserId(userId);
-    }
-
-    private Long getCurrentUserId() {
-        String username = SecurityContextHolder.getContext().getAuthentication().getName();
-
-        return userRepository.findByUsername(username)
-                .orElseThrow(() -> new UnauthorizedAccessException("User not found in security context"))
-                .getId();
     }
 
     public Card save(Card card) {
