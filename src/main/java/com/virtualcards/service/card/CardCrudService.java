@@ -35,7 +35,7 @@ public class CardCrudService {
 
     public void deleteCard(Long id) {
         Card card = getCard(id);
-        cardRepository.deleteById(id);
+        cardRepository.delete(card);
     }
 
     public Card getCard(Long id) {
@@ -60,6 +60,10 @@ public class CardCrudService {
         return userRepository.findByUsername(username)
                 .orElseThrow(() -> new RuntimeException("User not found"))
                 .getId();
+    }
+
+    public Card save(Card card) {
+        return cardRepository.save(card);
     }
 
 }

@@ -23,6 +23,9 @@ public class BattleManagerController {
     public ResponseEntity<BattleLog> battle(@PathVariable Long id) {
         Card card = cardCrudService.getCard(id);
         BattleLog log = battleManagerService.battle(card);
+
+        cardCrudService.save(card);
+
         return ResponseEntity.ok(log);
     }
 
