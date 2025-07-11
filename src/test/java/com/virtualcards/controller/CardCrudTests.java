@@ -1,6 +1,6 @@
 package com.virtualcards.controller;
 
-import com.virtualcards.dto.card.CreateCardRequest;
+import com.virtualcards.dto.card.CreateCardRequestDto;
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.service.card.CardCrudService;
@@ -36,7 +36,7 @@ public class CardCrudTests {
 
     @Test
     void addCard() {
-        CreateCardRequest request = new CreateCardRequest();
+        CreateCardRequestDto request = new CreateCardRequestDto();
         request.setType(Type.ROCK);
 
         when(cardCrudService.createCard(Type.ROCK)).thenReturn(testCard);
