@@ -12,11 +12,11 @@ public class BattleLogger {
     }
 
     public void logStart(String starterName) {
-        events.add("Battle starts! " + starterName + " goes first.");
+        events.add("Battle starts! " + starterName + " goes first");
     }
 
     public void logAttack(String attacker, String target, int targetHealth) {
-        events.add(attacker + " attacks: " + target + "'s health = " + targetHealth);
+        events.add(attacker + " attacks: " + target + "'s health " + targetHealth);
     }
 
     public void logWin(String name) {
