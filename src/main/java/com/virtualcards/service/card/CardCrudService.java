@@ -58,7 +58,7 @@ public class CardCrudService {
         String username = SecurityContextHolder.getContext().getAuthentication().getName();
 
         return userRepository.findByUsername(username)
-                .orElseThrow(() -> new RuntimeException("User not found"))
+                .orElseThrow(() -> new UnauthorizedAccessException("User not found in security context"))
                 .getId();
     }
 
