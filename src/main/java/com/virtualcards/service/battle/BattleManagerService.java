@@ -34,7 +34,7 @@ public class BattleManagerService {
 
     private void fightLoop(Card card, OpponentCard opponentCard, BattleLogger logger) {
         boolean playerStarts = cardCombatService.doesPlayerBeginAttacking();
-        String starterName = playerStarts ? card.getName() : opponentCard.getName();
+        String starterName = playerStarts ? card.getName() : "Opponent " + opponentCard.getName();
         logger.logStart(starterName);
 
         boolean isBattleOver = false;
@@ -56,13 +56,13 @@ public class BattleManagerService {
             int newOpponentHealth = cardCombatService.cardAttack(card, opponentCard);
             newOpponentHealth = Math.max(newOpponentHealth, 0);
             opponentCard.setHealth(newOpponentHealth);
-            logger.logAttack(card.getName(), opponentCard.getName(), newOpponentHealth);
+            logger.logAttack(card.getName(), " Opponent " + opponentCard.getName(), newOpponentHealth);
             return newOpponentHealth == 0;
         } else {
             int newPlayerHealth = cardCombatService.opponentCardAttack(card, opponentCard);
             newPlayerHealth = Math.max(newPlayerHealth, 0);
             card.setHealth(newPlayerHealth);
-            logger.logAttack(opponentCard.getName(), card.getName(), newPlayerHealth);
+            logger.logAttack("Opponent " + opponentCard.getName(), card.getName(), newPlayerHealth);
             return newPlayerHealth == 0;
         }
     }
