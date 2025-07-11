@@ -14,7 +14,7 @@ public class CombatResultService {
         };
     }
 
-    public boolean playerCardWins(Card card, OpponentCard opponentCard) {
+    public boolean playerCardWins(OpponentCard opponentCard) {
         return opponentCard.getHealth() <= 0;
     }
 
