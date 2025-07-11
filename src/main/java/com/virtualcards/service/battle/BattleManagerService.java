@@ -12,12 +12,14 @@ public class BattleManagerService {
     private final AttackService cardCombatService;
     private final OpponentCardGenerator opponentCardGenerator;
     private final CombatResultService combatResultService;
+    private final PostBattleHealing postBattleHealing;
 
     public BattleManagerService(AttackService cardCombatService, OpponentCardGenerator opponentCardGenerator,
-                                CombatResultService combatResultService) {
+                                CombatResultService combatResultService, PostBattleHealing postBattleHealing) {
         this.cardCombatService = cardCombatService;
         this.opponentCardGenerator = opponentCardGenerator;
         this.combatResultService = combatResultService;
+        this.postBattleHealing = postBattleHealing;
     }
 
     public BattleLog battle(Card card) {
@@ -76,6 +78,8 @@ public class BattleManagerService {
         } else {
             logger.logLoss(card.getName());
         }
+
+        postBattleHealing.startCooldown(card.getId());
     }
 
 }
