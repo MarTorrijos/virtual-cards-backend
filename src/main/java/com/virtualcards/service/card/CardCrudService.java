@@ -45,7 +45,7 @@ public class CardCrudService {
         return card;
     }
 
-    public List<Card> getAllCardsForCurrentUser() {
+    private List<Card> getAllCardsForCurrentUser() {
         Long userId = currentUserService.getCurrentUserId();
         return cardRepository.findByUserId(userId);
     }
