@@ -35,7 +35,7 @@ public class BattleManagerService {
         fightLoop(card, opponentCard, logger);
         resolveOutcome(card, opponentCard, logger);
 
-        cardCrudService.save(card);
+        cardCrudService.persistBattleResult(card);
 
         return new BattleLogDto(card, logger.getEvents());
     }

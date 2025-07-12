@@ -21,7 +21,7 @@ public class CardCrudController {
 
     @PostMapping
     public ResponseEntity<CardResponseDto> createCard(@RequestBody CreateCardRequestDto request) {
-        CardResponseDto addedCard = cardCrudService.mapToDto(cardCrudService.createCard(request.getType()));
+        CardResponseDto addedCard = cardCrudService.createCardAndReturnDto(request.getType());
         return ResponseEntity.status(HttpStatus.CREATED).body(addedCard);
     }
 
@@ -33,7 +33,7 @@ public class CardCrudController {
 
     @GetMapping("/{id}")
     public ResponseEntity<CardResponseDto> getCard(@PathVariable Long id) {
-        return ResponseEntity.status(HttpStatus.ACCEPTED).body(cardCrudService.getCardDto(id));
+        return ResponseEntity.ok(cardCrudService.getCardForCurrentUserDto(id));
     }
 
     @GetMapping
