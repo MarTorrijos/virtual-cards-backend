@@ -8,23 +8,20 @@ import com.virtualcards.exception.CardNotFoundException;
 import com.virtualcards.exception.UnauthorizedAccessException;
 import com.virtualcards.repository.CardRepository;
 import com.virtualcards.service.user.CurrentUserService;
+import com.virtualcards.util.CardMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @Service
 public class CardCrudService {
 
     private final CardRepository cardRepository;
     private final CardFactory cardFactory;
     private final CurrentUserService currentUserService;
-
-    public CardCrudService(CardRepository cardRepository, CardFactory cardFactory,
-                           CurrentUserService currentUserService) {
-        this.cardRepository = cardRepository;
-        this.cardFactory = cardFactory;
-        this.currentUserService = currentUserService;
-    }
+    private final CardMapper cardMapper;
 
     public Card createCard(Type type) {
         Long userId = currentUserService.getCurrentUserId();
@@ -53,31 +50,26 @@ public class CardCrudService {
         return cardRepository.findByUserId(userId);
     }
 
-    public Card save(Card card) {
-        return cardRepository.save(card);
-    }
-
-    public CardResponseDto getCardDto(Long id) {
-        return mapToDto(getCard(id));
+    public CardResponseDto getCardForCurrentUserDto(Long id) {
+        return cardMapper.mapToDto(getCard(id));
     }
 
     public List<CardResponseDto> getAllCardsForCurrentUserDto() {
         return getAllCardsForCurrentUser().stream()
-                .map(this::mapToDto)
+                .map(cardMapper::mapToDto)
                 .toList();
     }
 
-    public CardResponseDto mapToDto(Card card) {
-        return new CardResponseDto(
-                card.getId(),
-                card.getName(),
-                card.getType(),
-                card.getEvolutionStage(),
-                card.getAttack(),
-                card.getMaxHealth(),
-                card.getCurrentHealth(),
-                card.getXp()
-        );
+    public CardResponseDto createCardAndReturnDto(Type type) {
+        Card card = createCard(type);
+        return cardMapper.mapToDto(card);
+    }
+
+    public void persistBattleResult(Card card) {
+        if (!card.getUserId().equals(currentUserService.getCurrentUserId())) {
+            throw new UnauthorizedAccessException("You do not have permission to update this card");
+        }
+        cardRepository.save(card);
     }
 
 }
