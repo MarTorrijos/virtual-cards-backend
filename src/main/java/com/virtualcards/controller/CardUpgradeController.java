@@ -3,11 +3,11 @@ package com.virtualcards.controller;
 import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.service.card.CardUpgradeService;
 import com.virtualcards.util.CardMapper;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/card")
 public class CardUpgradeController {

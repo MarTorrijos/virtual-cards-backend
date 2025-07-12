@@ -4,23 +4,18 @@ import com.virtualcards.exception.MaxEvolutionStageReachedException;
 import com.virtualcards.exception.NotEnoughEnergyException;
 import com.virtualcards.domain.Card;
 import com.virtualcards.repository.CardRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Consumer;
 
+@RequiredArgsConstructor
 @Service
 public class CardUpgradeService {
 
     private final CardRepository cardRepository;
     private final CardCrudService cardCrudService;
     private final CardEvolutionEngine cardEvolutionEngine;
-
-    public CardUpgradeService(CardRepository cardRepository, CardCrudService cardCrudService,
-                              CardEvolutionEngine cardEvolutionEngine) {
-        this.cardRepository = cardRepository;
-        this.cardCrudService = cardCrudService;
-        this.cardEvolutionEngine = cardEvolutionEngine;
-    }
 
     public Card upgradeAttack(Long cardId) {
         return applyUpgrade(cardId, "attack", card -> card.setAttack(card.getAttack() + 10));

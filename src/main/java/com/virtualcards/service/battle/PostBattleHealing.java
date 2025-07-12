@@ -12,8 +12,8 @@ import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Service
 @RequiredArgsConstructor
+@Service
 public class PostBattleHealing {
 
     private final CardRepository cardRepository;

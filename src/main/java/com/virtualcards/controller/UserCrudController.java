@@ -5,18 +5,16 @@ import com.virtualcards.dto.user.UpdateUsernameRequestDto;
 import com.virtualcards.dto.user.UserResponseDto;
 import com.virtualcards.service.user.UserCrudService;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/user")
 public class UserCrudController {
 
     private final UserCrudService userCrudService;
-
-    public UserCrudController(UserCrudService userCrudService) {
-        this.userCrudService = userCrudService;
-    }
 
     @GetMapping("/me")
     public ResponseEntity<UserResponseDto> getCurrentUserProfile() {

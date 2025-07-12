@@ -2,19 +2,17 @@ package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
 import com.virtualcards.dto.battle.OpponentCardDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.Random;
 
+@RequiredArgsConstructor
 @Service
 public class AttackService {
 
     private final Random random = new Random();
     private final AdvantageService advantageService;
-
-    public AttackService(AdvantageService advantageService) {
-        this.advantageService = advantageService;
-    }
 
     public boolean doesPlayerBeginAttacking() {
         return random.nextBoolean();

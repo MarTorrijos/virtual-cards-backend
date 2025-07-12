@@ -5,12 +5,14 @@ import com.virtualcards.domain.enums.Role;
 import com.virtualcards.dto.auth.AuthenticationRequestDto;
 import com.virtualcards.dto.auth.AuthenticationResponseDto;
 import com.virtualcards.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class AuthService {
 
@@ -18,14 +20,6 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final AuthenticationManager authenticationManager;
     private final JwtService jwtService;
-
-    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder,
-                       AuthenticationManager authenticationManager, JwtService jwtService) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.authenticationManager = authenticationManager;
-        this.jwtService = jwtService;
-    }
 
     public void registerNewUser(AuthenticationRequestDto request) {
         if (userRepository.findByUsername(request.getUsername()).isPresent()) {

@@ -1,24 +1,20 @@
 package com.virtualcards.service.admin;
 
-import com.virtualcards.domain.Card;
 import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.repository.CardRepository;
 import com.virtualcards.util.CardMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RequiredArgsConstructor
 @Service
 public class AdminService {
 
     private final CardRepository cardRepository;
     private final CardMapper cardMapper;
-
-    public AdminService(CardRepository cardRepository, CardMapper cardMapper) {
-        this.cardRepository = cardRepository;
-        this.cardMapper = cardMapper;
-    }
 
 // TODO
 

@@ -4,19 +4,17 @@ import com.virtualcards.domain.Card;
 import com.virtualcards.domain.enums.Type;
 import com.virtualcards.domain.factory.DefaultCardFactory;
 import com.virtualcards.dto.battle.OpponentCardDto;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import java.util.Random;
 
+@RequiredArgsConstructor
 @Component
 public class OpponentCardGenerator {
 
     private final DefaultCardFactory defaultCardFactory;
     private final Random random = new Random();
-
-    public OpponentCardGenerator(DefaultCardFactory defaultCardFactory) {
-        this.defaultCardFactory = defaultCardFactory;
-    }
 
     public OpponentCardDto createFairOpponent(Card playerCard) {
         Type randomType = getRandomType();

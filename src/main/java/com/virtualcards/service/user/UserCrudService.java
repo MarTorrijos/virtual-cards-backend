@@ -5,22 +5,17 @@ import com.virtualcards.dto.user.UpdateUsernameRequestDto;
 import com.virtualcards.dto.user.UserResponseDto;
 import com.virtualcards.domain.User;
 import com.virtualcards.repository.UserRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+@RequiredArgsConstructor
 @Service
 public class UserCrudService {
 
     private final UserRepository userRepository;
     private final CurrentUserService currentUserService;
     private final PasswordEncoder passwordEncoder;
-
-    public UserCrudService(UserRepository userRepository, CurrentUserService currentUserService,
-                           PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.currentUserService = currentUserService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     public UserResponseDto getCurrentUserProfile() {
         User currentUser = currentUserService.getCurrentUser();

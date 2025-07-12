@@ -3,21 +3,19 @@ package com.virtualcards.controller;
 import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.dto.card.CreateCardRequestDto;
 import com.virtualcards.service.card.CardCrudService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RequiredArgsConstructor
 @RestController
 @RequestMapping("/card")
 public class CardCrudController {
 
     private final CardCrudService cardCrudService;
-
-    public CardCrudController(CardCrudService cardCrudService) {
-        this.cardCrudService = cardCrudService;
-    }
 
     @PostMapping
     public ResponseEntity<CardResponseDto> createCard(@RequestBody CreateCardRequestDto request) {
