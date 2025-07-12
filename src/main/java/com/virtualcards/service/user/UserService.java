@@ -4,16 +4,19 @@ import com.virtualcards.dto.user.UpdatePasswordRequestDto;
 import com.virtualcards.dto.user.UpdateUsernameRequestDto;
 import com.virtualcards.dto.user.UserResponseDto;
 import com.virtualcards.domain.User;
+import com.virtualcards.repository.CardRepository;
 import com.virtualcards.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @RequiredArgsConstructor
 @Service
 public class UserService {
 
     private final UserRepository userRepository;
+    private final CardRepository cardRepository;
     private final CurrentUserService currentUserService;
     private final PasswordEncoder passwordEncoder;
 
@@ -22,8 +25,10 @@ public class UserService {
         return new UserResponseDto(currentUser.getId(), currentUser.getUsername());
     }
 
+    @Transactional
     public void deleteOwnAccount() {
         User currentUser = currentUserService.getCurrentUser();
+        cardRepository.deleteByUserId(currentUser.getId());
         userRepository.deleteById(currentUser.getId());
     }
 
