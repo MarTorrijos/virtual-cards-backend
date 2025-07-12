@@ -3,7 +3,7 @@ package com.virtualcards.controller;
 import com.virtualcards.dto.user.UpdatePasswordRequestDto;
 import com.virtualcards.dto.user.UpdateUsernameRequestDto;
 import com.virtualcards.dto.user.UserResponseDto;
-import com.virtualcards.service.user.UserCrudService;
+import com.virtualcards.service.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -12,30 +12,30 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/user")
-public class UserCrudController {
+public class UserController {
 
-    private final UserCrudService userCrudService;
+    private final UserService userService;
 
     @GetMapping("/me")
     public ResponseEntity<UserResponseDto> getCurrentUserProfile() {
-        return ResponseEntity.ok(userCrudService.getCurrentUserProfile());
+        return ResponseEntity.ok(userService.getCurrentUserProfile());
     }
 
     @PutMapping("/me/username")
     public ResponseEntity<Void> updateUsername(@Valid @RequestBody UpdateUsernameRequestDto dto) {
-        userCrudService.updateUsername(dto);
+        userService.updateUsername(dto);
         return ResponseEntity.noContent().build();
     }
 
     @PutMapping("/me/password")
     public ResponseEntity<Void> updatePassword(@Valid @RequestBody UpdatePasswordRequestDto dto) {
-        userCrudService.updatePassword(dto);
+        userService.updatePassword(dto);
         return ResponseEntity.noContent().build();
     }
 
     @DeleteMapping("/me")
     public ResponseEntity<Void> deleteOwnAccount() {
-        userCrudService.deleteOwnAccount();
+        userService.deleteOwnAccount();
         return ResponseEntity.noContent().build();
     }
 
