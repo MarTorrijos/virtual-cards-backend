@@ -12,29 +12,29 @@ import java.util.List;
 
 @RequiredArgsConstructor
 @RestController
-@RequestMapping("/card")
+@RequestMapping
 public class CardCrudController {
 
     private final CardCrudService cardCrudService;
 
-    @PostMapping
+    @PostMapping("/card")
     public ResponseEntity<CardResponseDto> createCard(@RequestBody CreateCardRequestDto request) {
         CardResponseDto addedCard = cardCrudService.createCardAndReturnDto(request.getType());
         return ResponseEntity.status(HttpStatus.CREATED).body(addedCard);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/card/{id}")
     public ResponseEntity<Void> deleteCard(@PathVariable Long id) {
         cardCrudService.deleteCard(id);
         return ResponseEntity.noContent().build();
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/card/{id}")
     public ResponseEntity<CardResponseDto> getCard(@PathVariable Long id) {
         return ResponseEntity.ok(cardCrudService.getCardForCurrentUserDto(id));
     }
 
-    @GetMapping
+    @GetMapping("/cards")
     public ResponseEntity<List<CardResponseDto>> getAllCardsForCurrentUser() {
         return ResponseEntity.ok(cardCrudService.getAllCardsForCurrentUserDto());
     }
