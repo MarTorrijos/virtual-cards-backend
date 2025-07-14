@@ -25,7 +25,7 @@ public class AdminController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/user")
+    @GetMapping("/users")
     public ResponseEntity<List<UserResponseDto>> getAllUsers() {
         return ResponseEntity.ok(adminService.getAllUsers());
     }
@@ -50,9 +50,11 @@ public class AdminController {
     }
 
     @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping("/card/awardxp")
-    public ResponseEntity<AdminCardResponseDto> awardXpToCard(@RequestBody XpAwardRequestDto dto) {
-        return ResponseEntity.ok(adminService.awardXpToCard(dto));
+    @PutMapping("/card/{id}/awardxp")
+    public ResponseEntity<AdminCardResponseDto> awardXpToCard(
+            @PathVariable Long id,
+            @RequestBody XpAwardRequestDto dto) {
+        return ResponseEntity.ok(adminService.awardXpToCard(id, dto));
     }
 
     @PreAuthorize("hasRole('ADMIN')")

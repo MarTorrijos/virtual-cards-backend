@@ -66,13 +66,13 @@ public class AdminService {
                 .collect(Collectors.toList());
     }
 
-    public AdminCardResponseDto awardXpToCard(XpAwardRequestDto dto) {
+    public AdminCardResponseDto awardXpToCard(Long cardId, XpAwardRequestDto dto) {
         if (dto.xp() <= 0) {
             throw new IllegalArgumentException("XP must be greater than zero");
         }
 
-        Card card = cardRepository.findById(dto.cardId())
-                .orElseThrow(() -> new CardNotFoundException(dto.cardId()));
+        Card card = cardRepository.findById(cardId)
+                .orElseThrow(() -> new CardNotFoundException(cardId));
         card.setXp(card.getXp() + dto.xp());
         return cardMapper.mapToAdminDto(cardRepository.save(card));
     }
