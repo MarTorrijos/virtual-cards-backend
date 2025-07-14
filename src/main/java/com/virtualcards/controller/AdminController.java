@@ -1,7 +1,7 @@
 package com.virtualcards.controller;
 
+import com.virtualcards.dto.admin.AdminCardResponseDto;
 import com.virtualcards.dto.admin.XpAwardRequestDto;
-import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.dto.user.UserResponseDto;
 import com.virtualcards.service.admin.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -39,19 +39,19 @@ public class AdminController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/card/{id}")
-    public ResponseEntity<CardResponseDto> getCard(@PathVariable Long id) {
+    public ResponseEntity<AdminCardResponseDto> getCard(@PathVariable Long id) {
         return ResponseEntity.ok(adminService.getCard(id));
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @GetMapping("/cards")
-    public ResponseEntity<List<CardResponseDto>> getAllCards() {
+    public ResponseEntity<List<AdminCardResponseDto>> getAllCards() {
         return ResponseEntity.ok(adminService.getAllCards());
     }
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping("/card/awardxp")
-    public ResponseEntity<CardResponseDto> awardXpToCard(@RequestBody XpAwardRequestDto dto) {
+    public ResponseEntity<AdminCardResponseDto> awardXpToCard(@RequestBody XpAwardRequestDto dto) {
         return ResponseEntity.ok(adminService.awardXpToCard(dto));
     }
 

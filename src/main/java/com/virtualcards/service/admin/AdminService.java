@@ -2,7 +2,7 @@ package com.virtualcards.service.admin;
 
 import com.virtualcards.domain.Card;
 import com.virtualcards.domain.User;
-import com.virtualcards.dto.card.CardResponseDto;
+import com.virtualcards.dto.admin.AdminCardResponseDto;
 import com.virtualcards.dto.user.UserResponseDto;
 import com.virtualcards.dto.admin.XpAwardRequestDto;
 import com.virtualcards.exception.CardNotFoundException;
@@ -54,19 +54,19 @@ public class AdminService {
         userRepository.deleteById(userId);
     }
 
-    public CardResponseDto getCard(Long cardId) {
+    public AdminCardResponseDto getCard(Long cardId) {
         Card card = cardRepository.findById(cardId)
                 .orElseThrow(() -> new CardNotFoundException(cardId));
-        return cardMapper.mapToDto(card);
+        return cardMapper.mapToAdminDto(card);
     }
 
-    public List<CardResponseDto> getAllCards() {
+    public List<AdminCardResponseDto> getAllCards() {
         return cardRepository.findAll().stream()
-                .map(cardMapper::mapToDto)
+                .map(cardMapper::mapToAdminDto)
                 .collect(Collectors.toList());
     }
 
-    public CardResponseDto awardXpToCard(XpAwardRequestDto dto) {
+    public AdminCardResponseDto awardXpToCard(XpAwardRequestDto dto) {
         if (dto.xp() <= 0) {
             throw new IllegalArgumentException("XP must be greater than zero");
         }
@@ -74,7 +74,7 @@ public class AdminService {
         Card card = cardRepository.findById(dto.cardId())
                 .orElseThrow(() -> new CardNotFoundException(dto.cardId()));
         card.setXp(card.getXp() + dto.xp());
-        return cardMapper.mapToDto(cardRepository.save(card));
+        return cardMapper.mapToAdminDto(cardRepository.save(card));
     }
 
     public void deleteCard(Long cardId) {
