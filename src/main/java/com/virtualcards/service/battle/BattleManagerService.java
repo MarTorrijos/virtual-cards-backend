@@ -3,6 +3,7 @@ package com.virtualcards.service.battle;
 import com.virtualcards.domain.Card;
 import com.virtualcards.dto.battle.BattleLogDto;
 import com.virtualcards.dto.battle.OpponentCardDto;
+import com.virtualcards.dto.card.CardResponseDto;
 import com.virtualcards.service.card.CardCrudService;
 import com.virtualcards.util.BattleLogger;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +30,7 @@ public class BattleManagerService {
 
         cardCrudService.persistBattleResult(card);
 
-        return new BattleLogDto(card, logger.getEvents());
+        return new BattleLogDto(CardResponseDto.from(card), opponentCard, logger.getEvents());
     }
 
     private void fightLoop(Card card, OpponentCardDto opponentCard, BattleLogger logger) {
