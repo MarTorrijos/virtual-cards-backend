@@ -1,24 +1,24 @@
-{
-  "username": "test",
-  "password": "123456"
-}
 
-____________________________________________________________________
-
-Not sure the previous user works okay. I created a new one just in case
+NORMAL USER
 
 {
   "username": "testuser",
   "password": "testpass"
 }
 
+____________________________________________________________________
 
-current token:
+ADMIN USER
 
-eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ0ZXN0dXNlciIsInJvbGVzIjpbeyJhdXRob3JpdHkiOiJST0xFX1VTRVIifV0sImlhdCI6MTc1MTk2NTEzMiwiZXhwIjoxNzUxOTY4NzMyfQ.AcsHyBknDcRjgWqvkdcZWWllytuy2FRB9sTsaibwFQI
+{
+  "username": "Admin",
+  "password": "admin"
+}
 
+____________________________________________________________________
 
-To create a card with curl (it's helped when postman was just saying that something couldn't be done, this gave more info:
+To create a card with curl (it's helped when postman was just saying that something couldn't be done,
+this gave more info:
 
 curl -X POST http://localhost:8080/card \
      -H "Content-Type: application/json" \
