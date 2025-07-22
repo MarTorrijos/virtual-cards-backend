@@ -1,3 +1,3 @@
 package com.virtualcards.dto.auth;
 
-public record AuthenticationResponseDto(String token) {}
+public record AuthenticationResponseDto(String token, String role) {}

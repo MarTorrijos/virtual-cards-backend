@@ -42,7 +42,7 @@ public class AuthService {
                 .orElseThrow(() -> new UsernameNotFoundException("Invalid username or password"));
 
         String token = jwtService.generateToken(user);
-        return new AuthenticationResponseDto(token);
+        return new AuthenticationResponseDto(token, user.getRole().name());
     }
 
 }
