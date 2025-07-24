@@ -4,37 +4,43 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
+
 @RestControllerAdvice
 public class GlobalExceptionHandler {
 
+    private ResponseEntity<Map<String, String>> wrap(String msg, HttpStatus status) {
+        return new ResponseEntity<>(Map.of("message", msg), status);
+    }
+
     @ExceptionHandler(CardNotFoundException.class)
-    public ResponseEntity<String> handleCardNotFound(CardNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Map<String, String>> handleCardNotFound(CardNotFoundException ex) {
+        return wrap(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(CooldownNotOverException.class)
-    public ResponseEntity<String> handleCooldownNotOver(CooldownNotOverException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Map<String, String>> handleCooldownNotOver(CooldownNotOverException ex) {
+        return wrap(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(NotEnoughXpException.class)
-    public ResponseEntity<String> handleNotEnoughEnergy(NotEnoughXpException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Map<String, String>> handleNotEnoughXp(NotEnoughXpException ex) {
+        return wrap(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(MaxEvolutionStageReachedException.class)
-    public ResponseEntity<String> handleMaxEvolutionStageReached(MaxEvolutionStageReachedException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    public ResponseEntity<Map<String, String>> handleMaxEvolutionStageReached(MaxEvolutionStageReachedException ex) {
+        return wrap(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
     @ExceptionHandler(UnauthorizedAccessException.class)
-    public ResponseEntity<String> handleUnauthorizedAccess(UnauthorizedAccessException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.FORBIDDEN);
+    public ResponseEntity<Map<String, String>> handleUnauthorizedAccess(UnauthorizedAccessException ex) {
+        return wrap(ex.getMessage(), HttpStatus.FORBIDDEN);
     }
 
     @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<String> handleUserNotFound(UserNotFoundException ex) {
-        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    public ResponseEntity<Map<String, String>> handleUserNotFound(UserNotFoundException ex) {
+        return wrap(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
 }
