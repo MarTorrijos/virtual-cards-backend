@@ -15,5 +15,7 @@ public class OpponentCardDto {
     private int evolutionStage;
     private int attack;
     private int health;
+    private boolean hasAdvantage;
+    private int advantageBonus;
 
 }

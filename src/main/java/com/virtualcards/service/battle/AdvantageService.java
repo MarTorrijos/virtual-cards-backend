@@ -7,20 +7,24 @@ import org.springframework.stereotype.Service;
 public class AdvantageService {
 
     public int calculateEffectiveAttack(Type attackerType, Type defenderType, int baseAttack, int attackerStage) {
-        int bonus = switch (attackerStage) {
+        return hasTypeAdvantage(attackerType, defenderType)
+                ? baseAttack + getBonus(attackerStage)
+                : baseAttack;
+    }
+
+    public boolean hasTypeAdvantage(Type attacker, Type defender) {
+        return (attacker == Type.ROCK && defender == Type.SCISSORS)
+                || (attacker == Type.SCISSORS && defender == Type.PAPER)
+                || (attacker == Type.PAPER && defender == Type.ROCK);
+    }
+
+    public int getBonus(int attackerStage) {
+        return switch (attackerStage) {
             case 1 -> 10;
             case 2 -> 15;
             case 3 -> 20;
             default -> 0;
         };
-
-        return hasTypeAdvantage(attackerType, defenderType) ? baseAttack + bonus : baseAttack;
-    }
-
-    private boolean hasTypeAdvantage(Type attacker, Type defender) {
-        return (attacker == Type.ROCK && defender == Type.SCISSORS)
-                || (attacker == Type.SCISSORS && defender == Type.PAPER)
-                || (attacker == Type.PAPER && defender == Type.ROCK);
     }
 
 }

@@ -27,7 +27,9 @@ public class OpponentCardGenerator {
                 opponentCard.getType(),
                 opponentCard.getEvolutionStage(),
                 opponentCard.getAttack(),
-                opponentCard.getMaxHealth()
+                opponentCard.getMaxHealth(),
+                false,
+                0
         );
     }
 

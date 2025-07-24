@@ -74,4 +74,5 @@ public class CardEvolutionEngine {
             default -> throw new IllegalArgumentException("Invalid evolution stage for scissors type: " + stage);
         }
     }
+
 }

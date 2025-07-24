@@ -49,7 +49,7 @@ public class OpponentCardFactory {
                 maxHealth,
                 maxHealth,
                 0,
-                null // Opponent has no userId
+                null
         );
     }
 

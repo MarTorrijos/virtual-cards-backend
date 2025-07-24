@@ -1,6 +1,7 @@
 package com.virtualcards.service.battle;
 
 import com.virtualcards.domain.Card;
+import com.virtualcards.domain.enums.Type;
 import com.virtualcards.dto.battle.BattleLogDto;
 import com.virtualcards.dto.battle.OpponentCardDto;
 import com.virtualcards.dto.card.CardResponseDto;
@@ -18,6 +19,7 @@ public class BattleManagerService {
     private final CombatResultService combatResultService;
     private final PostBattleHealing postBattleHealing;
     private final CardCrudService cardCrudService;
+    private final AdvantageService advantageService;
 
     public BattleLogDto battle(Card card) {
         BattleLogger logger = new BattleLogger();
@@ -25,12 +27,25 @@ public class BattleManagerService {
         OpponentCardDto opponentCard = opponentCardGenerator.createFairOpponent(card);
         logger.logOpponentGenerated(opponentCard.getName(), opponentCard.getEvolutionStage());
 
+        boolean playerHasAdvantage = advantageService.hasTypeAdvantage(card.getType(), opponentCard.getType());
+        boolean opponentHasAdvantage = advantageService.hasTypeAdvantage(opponentCard.getType(), card.getType());
+
+        int playerBonus = playerHasAdvantage ? advantageService.getBonus(card.getEvolutionStage()) : 0;
+        int opponentBonus = opponentHasAdvantage ? advantageService.getBonus(opponentCard.getEvolutionStage()) : 0;
+
+        CardResponseDto playerCardDto = new CardResponseDto(card);
+        playerCardDto.setHasAdvantage(playerHasAdvantage);
+        playerCardDto.setAdvantageBonus(playerBonus);
+
+        opponentCard.setHasAdvantage(opponentHasAdvantage);
+        opponentCard.setAdvantageBonus(opponentBonus);
+
         fightLoop(card, opponentCard, logger);
         resolveOutcome(card, opponentCard, logger);
 
         cardCrudService.persistBattleResult(card);
 
-        return new BattleLogDto(CardResponseDto.from(card), opponentCard, logger.getEvents());
+        return new BattleLogDto(playerCardDto, opponentCard, logger.getEvents());
     }
 
     private void fightLoop(Card card, OpponentCardDto opponentCard, BattleLogger logger) {
