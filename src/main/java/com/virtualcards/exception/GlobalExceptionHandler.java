@@ -17,8 +17,8 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(NotEnoughEnergyException.class)
-    public ResponseEntity<String> handleNotEnoughEnergy(NotEnoughEnergyException ex) {
+    @ExceptionHandler(NotEnoughXpException.class)
+    public ResponseEntity<String> handleNotEnoughEnergy(NotEnoughXpException ex) {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
