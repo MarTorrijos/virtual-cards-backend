@@ -1,14 +1,14 @@
 
-NORMAL USER
+USER
 
 {
-  "username": "testuser",
-  "password": "testpass"
+  "username": "test",
+  "password": "test"
 }
 
 ____________________________________________________________________
 
-ADMIN USER
+ADMIN
 
 {
   "username": "Admin",
@@ -17,8 +17,8 @@ ADMIN USER
 
 ____________________________________________________________________
 
-To create a card with curl (it's helped when postman was just saying that something couldn't be done,
-this gave more info:
+To create a card with curl
+(it's helped when Postman was just saying that something couldn't be done, this gave more info)
 
 curl -X POST http://localhost:8080/card \
      -H "Content-Type: application/json" \
