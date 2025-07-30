@@ -1,6 +1,6 @@
 # Virtual Cards
 
-This project is the final assignment for the Backend Development course in Java and Spring Framework at IT Academy Barcelona. It puts together the knowledge I've been learning through the course to create a webapp with CRUD, security and roles.
+This project is the final assignment for the Backend Development course in Java and Spring Framework at IT Academy Barcelona. It puts together the knowledge I've been learning through the course to create a webapp with CRUD, security and roles with JWT.
 
 
 ## Game overview 
@@ -14,7 +14,6 @@ Virtual Cards is a simple game that allows users to create cards of different ty
 For the backend:
 - Java 21
 - Spring Boot 3.2.5
-- Spring Security + JWT
 - MySQL
 - Gradle
 - Swagger
