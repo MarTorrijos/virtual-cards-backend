@@ -40,12 +40,17 @@ http://localhost:8080/swagger-ui.html
 
 ## How to run the program
 
-Run the following commands, each of them in their corresponding folders.
+- Make sure you have the technologies used for the project installed.
+- Run the following commands, each of them in their corresponding folders.
 
 To run the backend
 
-`./gradlew bootRun`
+```bash
+./gradlew bootRun
+```
 
 To run the frontend
 
+```bash
 `npm run dev`
+```
