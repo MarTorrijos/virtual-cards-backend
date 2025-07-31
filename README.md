@@ -33,8 +33,9 @@ The backend was handled by the student, while the frontend and design work were 
 
 ## Endpoints
 
-Endpoints can be checked with Swagger (OpenAPI) after running the backend.
-http://localhost:8080/swagger-ui.html
+Endpoints can be checked with Swagger (OpenAPI) after running the backend
+
+http://localhost:8080/swagger-ui/index.html
 
 
 ## How to run the program
