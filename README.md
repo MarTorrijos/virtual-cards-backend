@@ -49,7 +49,7 @@ To run the backend go to the project folder, open a terminal and run
 ./gradlew bootRun
 ```
 
-To run the frontend go to the project folder, open a terminal and run
+To run the frontend download or clone [the repo folder](https://github.com/MarTorrijos/virtual-cards-frontend), go to the project folder, open a terminal and run
 
 ```bash
 npm run dev
