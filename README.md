@@ -51,5 +51,5 @@ To run the backend
 To run the frontend
 
 ```bash
-`npm run dev`
+npm run dev
 ```
