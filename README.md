@@ -1,6 +1,6 @@
 # Virtual Cards
 
-This project is the final assignment for the Backend Development course in Java and Spring Framework at IT Academy Barcelona. It puts together the knowledge I've been learning through the course to create a webapp with CRUD, security and roles.
+This project is the final assignment for the Backend Development course in Java and Spring Framework at IT Academy Barcelona. It puts together the knowledge I've been learning through the course to create a webapp with CRUD, security and roles with JWT.
 
 
 ## Game overview 
@@ -14,7 +14,6 @@ Virtual Cards is a simple game that allows users to create cards of different ty
 For the backend:
 - Java 21
 - Spring Boot 3.2.5
-- Spring Security + JWT
 - MySQL
 - Gradle
 - Swagger
@@ -34,23 +33,28 @@ The backend was handled by the student, while the frontend and design work were 
 
 ## Endpoints
 
-Endpoints can be checked with Swagger (OpenAPI) after running the backend.
-http://localhost:8080/swagger-ui.html
+Endpoints can be checked with Swagger (OpenAPI) after running the backend
+
+http://localhost:8080/swagger-ui/index.html
 
 
 ## How to run the program
 
 - Make sure you have the technologies used for the project installed.
-- Run the following commands, each of them in their corresponding folders.
+- Run the following commands, each of them in their corresponding folders (both the backend repo but also the frontend one).
 
-To run the backend
+To run the backend go to the project folder, open a terminal and run
 
 ```bash
 ./gradlew bootRun
 ```
 
-To run the frontend
+To run the frontend download or clone [the repo folder](https://github.com/MarTorrijos/virtual-cards-frontend), go to the project folder, open a terminal and run
 
 ```bash
-`npm run dev`
+npm run dev
 ```
+
+You'll be able to see it at
+
+http://localhost:5173/login
