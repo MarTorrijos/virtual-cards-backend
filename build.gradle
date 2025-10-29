@@ -2,6 +2,7 @@ plugins {
 	id 'java'
 	id 'org.springframework.boot' version '3.2.5'
 	id 'io.spring.dependency-management' version '1.1.7'
+    id 'jacoco'
 }
 
 group = 'com.virtualcards'
@@ -17,6 +18,7 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+    mockitoAgent
 }
 
 repositories {
@@ -27,10 +29,10 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0'
-	implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
+    implementation 'org.apache.commons:commons-lang3:3.18.0' // added to avoid a transitive vulnerable dependency
+    implementation 'jakarta.persistence:jakarta.persistence-api:3.1.0'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	// implementation 'com.mysql:mysql-connector-j'
 
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'com.mysql:mysql-connector-j'
@@ -42,8 +44,36 @@ dependencies {
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    // Mockito
+    testImplementation 'org.mockito:mockito-junit-jupiter:5.14.0'
+    mockitoAgent('org.mockito:mockito-core:5.14.0') {
+        transitive = false
+    }
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+    finalizedBy jacocoTestReport
+}
+
+
+jacocoTestReport {
+    dependsOn test
+    reports {
+        xml.required.set(true)
+        csv.required.set(false)
+        html.required.set(true)
+    }
+}
+
+jacocoTestCoverageVerification {
+    violationRules {
+        rule {
+            limit {
+                minimum = 0.8 // 80% minimum coverage
+            }
+        }
+    }
+
 }
